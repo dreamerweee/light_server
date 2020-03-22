@@ -9,10 +9,10 @@ static void Logger(int log_type, const char *buffer)
             type_msg = "debug";
             break;
         case LOG_TYPE_INFO:
-            type_msg = "info";
+            type_msg = "info ";
             break;
         case LOG_TYPE_WARN:
-            type_msg = "warn";
+            type_msg = "warn ";
             break;
         case LOG_TYPE_ERROR:
             type_msg = "error";
@@ -25,7 +25,7 @@ static void Logger(int log_type, const char *buffer)
 }
 
 // 处理需要输出的日志
-static void LogHandler(int log_type, const char *fmt, va_list args, int err_flag = 0)
+static void LogHandler(int log_type, const char *fmt, va_list args, int err_flag)
 {
     char buffer[1024];
     vsnprintf(buffer, sizeof(buffer), fmt, args);
@@ -44,7 +44,7 @@ void LogDebug(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
-    LogHandler(LOG_TYPE_DEBUG, fmt, args);
+    LogHandler(LOG_TYPE_DEBUG, fmt, args, 0);
     va_end(args);
 }
 
@@ -53,7 +53,7 @@ void LogInfo(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
-    LogHandler(LOG_TYPE_INFO, fmt, args);
+    LogHandler(LOG_TYPE_INFO, fmt, args, 0);
     va_end(args);
 }
 
@@ -62,7 +62,7 @@ void LogWarn(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
-    LogHandler(LOG_TYPE_WARN, fmt, args);
+    LogHandler(LOG_TYPE_WARN, fmt, args, 0);
     va_end(args);
 }
 
