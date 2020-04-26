@@ -11,6 +11,11 @@ EventLoop* EventLoopInit()
     return event_loop;
 }
 
+void EventLoopAddChannelEvent(EventLoop *event_loop, Channel *channel)
+{
+    
+}
+
 // 开始事件循环
 void EventLoopRun(EventLoop *event_loop)
 {
